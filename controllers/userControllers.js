@@ -56,4 +56,16 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { signupUser, loginUser };
+const searchUser = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [{ username: { $regex: req.query.search, $options: 'i' } }],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+
+  res.send(users);
+});
+
+export { signupUser, loginUser, searchUser };

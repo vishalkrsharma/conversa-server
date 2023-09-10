@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
 
 const app = express();
@@ -16,6 +17,7 @@ connectDB();
 app.get('/', (req, res) => res.send('API Running Successfully'));
 
 app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
