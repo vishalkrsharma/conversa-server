@@ -10,6 +10,8 @@ import messageRoutes from './routes/messageRoutes.js';
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
 import { Server } from 'socket.io';
 
+dotenv.config();
+
 const app = express();
 app.use(
   cors({
@@ -17,7 +19,6 @@ app.use(
   })
 );
 app.use(express.json());
-dotenv.config();
 connectDB();
 
 app.get('/', (req, res) => res.send('API Running Successfully'));
