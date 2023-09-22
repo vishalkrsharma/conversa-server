@@ -11,8 +11,6 @@ const sendMessage = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
-  console.log(req.user);
-
   var newMessage = {
     sender: req.user._id,
     content,
